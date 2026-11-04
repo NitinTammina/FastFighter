@@ -1,2 +1,2 @@
 # FastFighter
-fighting gaem
+fighting game
