@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     private bool jumpInput;
 
     // At least keep cooldown low so that jumps arent varied heights
-    private float jumpCooldown = .1f;
+    private float jumpCooldown = 1f;
     private float lastJump = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
