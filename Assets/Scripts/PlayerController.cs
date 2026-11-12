@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     // [SerializeField] just lets you edit private values in the inspector
     [SerializeField] private float speed;
     [SerializeField] private InputActionAsset PlayerControls;
+    [SerializeField] private string actionMap = "Player1";
     private float playerHeight;
     private InputAction moveAction;
     private InputAction jumpAction;
@@ -23,10 +24,12 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        moveAction = PlayerControls.FindAction("Move");
-        jumpAction = PlayerControls.FindAction("Jump");
-        //attack action is just a filler for testing the 
-        attackAction = PlayerControls.FindAction("Attack");
+        PlayerControls = Instantiate(PlayerControls);
+        var playerMap = PlayerControls.FindActionMap(actionMap);
+
+        moveAction = playerMap.FindAction("Move");
+        jumpAction = playerMap.FindAction("Jump");
+        attackAction = playerMap.FindAction("Attack");
         rb = GetComponent<Rigidbody2D>();
         playerHeight = GetComponent<SpriteRenderer>().bounds.size.y;
     }
@@ -77,7 +80,7 @@ public class PlayerController : MonoBehaviour
     {
         moveAction.Disable();
         jumpAction.Disable();
-        attackAction.Enable();
+        attackAction.Disable();
     }
 
 }
